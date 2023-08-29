@@ -1,0 +1,82 @@
+@use "sass:math";
+
+// add function ===============================================================================================================
+@use "./function" as *;
+
+// add mixins ================================================================================================================
+@use "./mixins" as *;
+
+// Fonts =====================================================================================================================
+
+// Connecting fonts (Поправить!!!)
+
+@include font("NextArt", NEXT-ART_Bold, 700, normal);
+@include font("NunitoSans", NunitoSans_7pt-Bold, 700, normal);
+@include font("NunitoSans", NunitoSans_7pt-ExtraBold, 800, normal);
+@include font("NunitoSans", NunitoSans_7pt-Light, 300, normal);
+@include font("NunitoSans", NunitoSans_7pt-Regular, 400, normal);
+@include font("NunitoSans", NunitoSans_7pt-SemiBold, 600, normal);
+@include font("icons", icons, 400, normal);
+
+// Variables font
+
+$baseSizeFont: toRem(14);
+$fontSize: toRem(14);
+$fontFamily: 'NunitoSans';
+
+
+// Settings ===============================================================================================================
+// Colors
+$mainColor: #F5F5F5;
+$firstColor: #1A3E3E;
+
+// Минимальная ширина страницы
+$minWidth: 390;
+
+// Ширина полотна
+$maxWidth: 1920;
+
+// Ширина ограничивающего контейнера (0 = нет ограничений)
+$minWidthContainer: 1177;
+
+// Отступ безопасности
+$containerPadding: 20px;
+
+// Type adaptive
+// 1 - отзывчивость
+// 2 - есть брейк-поинты
+$responsiveType: 1;
+
+// media
+
+$px: toEm($maxWidth); // Пк, ноутбук
+$tablet: toEm(991.98);
+$mobile: toEm(767.98);
+$mobileSmall: toEm(479.98);
+
+/* Сниппет */
+
+@if ($responsiveType==1) {
+    [class*="__container"] {
+        @if ($minWidthContainer > 0) {
+            max-width: toRem($minWidthContainer, $baseSizeFont);
+            box-sizing: content-box;
+            margin: 0 auto;
+        }
+        @if ($containerPadding>0) {
+            padding: 0 toRem(math.div($containerPadding, 2), $baseSizeFont);
+        }
+    }
+} @else {
+    [class*="__container"] {
+        margin: 0 auto;
+        @if ($minWidthContainer>0) {
+            max-width: toRem($minWidthContainer, $baseSizeFont);
+            box-sizing: content-box;
+        } @else {
+            @if ($containerPadding>0) {
+                padding: 0 toRem(math.div($containerPadding, 2), $baseSizeFont)
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+@use "../service/icofonts";
+
+
+.header {
+
+    &__container {
+    }
+
+    &__logo {
+    }
+
+    &__menu {
+    }
+}
+
+.menu {
+
+    &__body {
+    }
+
+    &__list {
+    }
+
+    &__item {
+    }
+
+    &__button {
+    }
+}
+.button {
+    display: inline-flex;
+    justify-content: center;
+    font-size: toRem(16);
+    border-radius: 4px;
+    justify-content: center;
+}
